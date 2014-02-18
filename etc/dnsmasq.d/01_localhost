@@ -1,0 +1,2 @@
+# Every address that ends in ‘.lan’ will belong to your local IP. 
+address=/lan/127.0.0.1

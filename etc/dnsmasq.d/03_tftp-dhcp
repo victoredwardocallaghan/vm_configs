@@ -1,0 +1,33 @@
+#
+# Notes::
+# http://wiki.openwrt.org/doc/uci/dhcp
+
+########################
+## Init configuration ##
+########################
+
+# listen on specific interface and address
+# [NOTICE]:: eth0 has to be powered up else service fails!!!
+interface=eth0
+bind-dynamic
+
+########################
+## DHCP configuration ##
+########################
+domain=alterapraxis.com
+dhcp-leasefile=/var/lib/misc/dnsmasq.leases
+dhcp-range=192.168.1.50,192.168.1.100,12h
+resolv-file=/etc/resolv_dnsmasq.conf
+
+# For debugging purposes, log each DNS query as it passes through
+# dnsmasq.
+log-queries
+
+# Log lots of extra information about DHCP transactions.
+log-dhcp
+
+## TFTP configuration ##
+########################
+enable-tftp
+tftp-root=/srv/tftp
+dhcp-boot=option:root-path,192.168.1.12:/srv/tftp/openwrt-ar71xx-uImage-initramfs-lzma.bin
